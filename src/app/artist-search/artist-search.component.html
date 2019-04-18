@@ -3,7 +3,9 @@
     <input class="form-control" #searchBox (input)="searchArtists(searchBox.value)">
     <ul class="search-result">
       <li *ngFor="let artist of artists$ | async">
+        <a routerLink="/artist/{{artist.id}}">
           {{artist.name}}
+        </a>
       </li>
     </ul>
   </div>

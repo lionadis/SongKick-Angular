@@ -1,0 +1,26 @@
+<div *ngIf="events.length > 0">
+  <h2 align="center">Result for artist {{events[0].artist.name}}</h2>
+  <br>
+  <table class="table">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Datetime</th>
+        <th scope="col">City</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let event of events">
+      <tr>
+        <td>{{event.name}}</td>
+        <td>{{event.type}}</td>
+        <td>{{event.date}}</td>
+        <td>{{event.venue.city}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="events.length === 0">
+  <br>
+  <h2>No upcomming concert</h2>
+</div>

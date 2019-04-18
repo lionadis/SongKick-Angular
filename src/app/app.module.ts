@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ArtistSearchComponent } from './artist-search/artist-search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesComponent } from './messages/messages.component';
+import { ArtistDetailsComponent } from './artist-details/artist-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistSearchComponent,
-    MessagesComponent
+    MessagesComponent,
+    ArtistDetailsComponent
   ],
   imports: [
     BrowserModule,

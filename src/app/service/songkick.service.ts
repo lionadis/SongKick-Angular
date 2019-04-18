@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Artist } from '../models/artist.model';
+import { Event } from '../models/event.model';
+import { Venue } from '../models/venue.model';
 import { MessageService } from './message.service';
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { MessageService } from './message.service';
 export class SongkickService {
 
   urlArtist = 'http://api.songkick.com/api/3.0/search/artists.json';
+  urlEvent = 'http://api.songkick.com/api/3.0/artists/${id}/calendar.json';
   apiKey = 'io09K9l3ebJxmxe2'
   constructor(
     private http: HttpClient,
@@ -39,6 +42,56 @@ export class SongkickService {
         )
     }
   }
+
+  getEvents(id: number): Observable<Event[]> {
+    const url = this.urlEvent.replace('${id}', `${id}`);
+
+    const httpOptions = {
+      params: new HttpParams().set('apikey', `${this.apiKey}`)
+    };
+    return this.http.get<Event[]>(`${url}`, httpOptions)
+      .pipe(
+        map(res => {
+          if ( Object.entries(res['resultsPage'].results).length === 0 &&
+                res['resultsPage'].results.constructor === Object ) {
+            return new Array<Event>();
+          } else {
+            return res['resultsPage'].results.event.map(item => {
+              let eventArtist: Artist;
+              for (const art of item.performance) {
+                  if (art.artist.id === id) {
+                    eventArtist = new Artist(art.artist.id, art.artist.displayName);
+                    break;
+                  }
+              }
+              let eventDate: Date;
+              if (item.type === 'Festival') {
+                eventDate = new Date(item.start.date);
+              } else {
+                eventDate = new Date(item.start.datetime);
+              }
+              return new Event(
+                item.id,
+                item.displayName,
+                item.type,
+                new Venue(item.venue.id,
+                  item.venue.displayName,
+                  item.venue.metroArea.displayName,
+                  item.venue.metroArea.country.displayName,
+                  item.venue.lat, item.venue.lng
+                ),
+                eventDate,
+                eventArtist
+              );
+            });
+          }
+
+        }),
+        catchError(this.handleError('getEvents', []))
+      );
+
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
    
