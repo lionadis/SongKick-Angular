@@ -1,0 +1,10 @@
+<div class="container">
+    <h2 align="center">Search for your favorite artist</h2>
+    <input class="form-control" #searchBox (input)="searchArtists(searchBox.value)">
+    <ul class="search-result">
+      <li *ngFor="let artist of artists$ | async">
+          {{artist.name}}
+      </li>
+    </ul>
+  </div>
+  
