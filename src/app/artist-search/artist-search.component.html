@@ -1,12 +1,12 @@
 <div class="container">
-    <h2 align="center">Search for your favorite artist</h2>
-    <input class="form-control" #searchBox (input)="searchArtist(searchBox.value)">
-    <ul class="search-result">
-      <li *ngFor="let artist of artists$ | async">
-        <a routerLink="/artist/{{artist.id}}">
-          {{artist.name}}
-        </a>
-      </li>
-    </ul>
-  </div>
-  
+  <h2 align="center">Search for your favorite artist</h2>
+  <input class="form-control" #searchBox (input)="searchArtist(searchBox.value)">
+  <ul class="search-result">
+    <li *ngFor="let artist of artists$ | async">
+      <a routerLink="/artist/{{artist.id}}">
+        {{artist.name}}
+      </a>
+    </li>
+  </ul>
+</div>
+<a routerLink="/venue/search">Search by venue</a>
