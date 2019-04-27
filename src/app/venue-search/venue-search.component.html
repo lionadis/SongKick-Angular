@@ -1,0 +1,11 @@
+<div class="container">
+  <h2 align="center">Search for your venue </h2>
+  <input class="form-control" #searchBox (input)="searchVenue(searchBox.value)">
+  <ul class="search-result">
+    <li *ngFor="let venue of venues$ | async">
+      <a routerLink="/venue/{{venue.id}}">
+        {{venue.name}}
+      </a>
+    </li>
+  </ul>
+</div>

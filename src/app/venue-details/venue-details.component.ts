@@ -5,11 +5,11 @@ import { SongkickService } from '../service/songkick.service';
 import { Event } from '../models/event.model';
 
 @Component({
-  selector: 'app-artist-details',
-  templateUrl: './artist-details.component.html',
-  styleUrls: ['./artist-details.component.css']
+  selector: 'app-venue-details',
+  templateUrl: './venue-details.component.html',
+  styleUrls: ['./venue-details.component.css']
 })
-export class ArtistDetailsComponent implements OnInit {
+export class VenueDetailsComponent implements OnInit {
 
   events: Event[] = [];
   constructor(
@@ -18,13 +18,13 @@ export class ArtistDetailsComponent implements OnInit {
     private location: Location
   ) { }
 
-  ngOnInit():void {
+  ngOnInit() {
     this.getEvents();
   }
 
   getEvents(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.songKickService.getEventsByArtist(id)
+    this.songKickService.getEventsByVenue(id)
       .subscribe(events => this.events = events)
   }
 

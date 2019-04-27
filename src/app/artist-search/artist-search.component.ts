@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Artist } from '../models/artist.model';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Artist } from '../models/artist.model';
 import { SongkickService } from '../service/songkick.service';
+
 @Component({
   selector: 'app-artist-search',
   templateUrl: './artist-search.component.html',
@@ -22,7 +23,7 @@ export class ArtistSearchComponent implements OnInit {
     );
   }
 
-  searchArtists(term: string): void{
+  searchArtist(term: string): void{
     this.searchTerms.next(term);
   }
 }

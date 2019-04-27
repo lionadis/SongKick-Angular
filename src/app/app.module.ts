@@ -7,13 +7,17 @@ import { ArtistSearchComponent } from './artist-search/artist-search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesComponent } from './messages/messages.component';
 import { ArtistDetailsComponent } from './artist-details/artist-details.component';
+import { VenueSearchComponent } from './venue-search/venue-search.component';
+import { VenueDetailsComponent } from './venue-details/venue-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistSearchComponent,
     MessagesComponent,
-    ArtistDetailsComponent
+    ArtistDetailsComponent,
+    VenueSearchComponent,
+    VenueDetailsComponent
   ],
   imports: [
     BrowserModule,
