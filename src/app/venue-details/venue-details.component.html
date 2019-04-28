@@ -1,4 +1,5 @@
 <div *ngIf="events.length > 0">
+    <a routerLink="/venue/search" class="button primary">Back</a>
   <h2 align="center">Result for venue {{events[0].venue.name}}</h2>
   <br>
   <table class="table">
@@ -21,6 +22,8 @@
   </table>
 </div>
 <div *ngIf="events.length === 0">
-  <br>
   <h2>No upcomming concert</h2>
+  <div align="center"><a routerLink="/venue/search" class="button primary">Back</a></div>
+  <br>
+  <br>
 </div>
