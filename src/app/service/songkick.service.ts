@@ -38,7 +38,7 @@ export class SongkickService {
             } else {
               return res['resultsPage'].results.artist.map(item => {
                 return new Artist(item.id, item.displayName);
-              })
+              }).slice(0, 4);
             }
           }),
           catchError(this.handleError('searchArtist', []))
@@ -62,7 +62,7 @@ export class SongkickService {
             } else {
               return res['resultsPage'].results.venue.map(item => {
                 return new Venue(item.id, item.displayName, item.city.displayName, item.city.country, item.lat, item.lng);
-              })
+              }).slice(0, 4)
             }
           }),
           catchError(this.handleError('searchVenue', []))
