@@ -4,16 +4,11 @@
   </div>
   <div class="content">
     <div class="inner">
-      <h1>Yona music</h1><input id="searchBar" class="searchbar" type="text" placeholder="Search by venue..."
-        class="form-control" #searchBox (input)="searchVenue(searchBox.value)">
-      <ul class="alt">
-        <br>
-        <li *ngFor="let venue of venues$ | async">
-          <a routerLink="/venue/{{venue.id}}">
-            {{venue.name}}
-          </a>
-        </li>
-      </ul>
+      <h1>Yona music</h1>
+      <input type="text" class="form-control mb-2" placeholder="Email" #userEmail required autofocus>
+      <input type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
+      <br>
+      <a class="button primary" (click)="authService.login(userEmail.value, userPassword.value)">Login</a>
     </div>
   </div>
   <nav>

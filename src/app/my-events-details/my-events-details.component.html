@@ -1,16 +1,15 @@
 <div *ngIf="events.length > 0">
-  <a routerLink="/venue/search" class="button primary">Back</a>
-  <h2 align="center">Result for venue {{events[0].venue.name}}</h2>
+  <a routerLink="/artist/search" class="button primary">Back</a>
+  <h2 align="center">My events</h2>
   <br>
-  <table class="table">
+  <table class="table alt">
     <thead class="table-primary">
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Type</th>
         <th scope="col">Datetime</th>
         <th scope="col">City</th>
-        <th scope="col">add to my events</th>
-        <th *ngIf="authService.isLoggedIn" scope="col">add to my events</th>
+        <th scope="col">Delete?</th>
       </tr>
     </thead>
     <tbody *ngFor="let event of events">
@@ -19,9 +18,9 @@
         <td>{{event.type}}</td>
         <td>{{event.date}}</td>
         <td>{{event.venue.city}}, {{ event.venue.country }}</td>
-        <td *ngIf="authService.isLoggedIn">
-          <button type="button" (click)="addEvent(event)" class="btn btn-primary">
-            add
+        <td>
+          <button type="button" (click)="deleteEvent(event)" class="btn btn-primary">
+            delete
           </button>
         </td>
       </tr>
@@ -29,8 +28,8 @@
   </table>
 </div>
 <div *ngIf="events.length === 0">
-  <h2>No upcomming concert</h2>
-  <div align="center"><a routerLink="/venue/search" class="button primary">Back</a></div>
+  <h2>You have no events</h2>
+  <div align="center"><a routerLink="/artist/search" class="button primary">Back</a></div>
   <br>
   <br>
 </div>

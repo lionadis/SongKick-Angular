@@ -3,6 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Venue } from '../models/venue.model'
 import { SongkickService } from '../service/songkick.service';
+import { AuthService } from  '../service/auth.service';
 
 @Component({
   selector: 'app-venue-search',
@@ -13,7 +14,7 @@ export class VenueSearchComponent implements OnInit {
 
   venues$: Observable<Venue[]>;
   private searchTerms = new Subject<string>();
-  constructor(private songKickService: SongkickService) { }
+  constructor(private songKickService: SongkickService, private  authService:  AuthService) { }
 
   ngOnInit() {
     this.venues$ = this.searchTerms.pipe(

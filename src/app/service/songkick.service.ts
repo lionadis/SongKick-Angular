@@ -134,10 +134,7 @@ export class SongkickService {
             return res['resultsPage'].results.event.map(item => {
               let eventArtist: Artist;
               for (const art of item.performance) {
-                  if (art.artist.id === id) {
                     eventArtist = new Artist(art.artist.id, art.artist.displayName);
-                    break;
-                  }
               }
               let eventDate: Date;
               if (item.type === 'Festival') {
